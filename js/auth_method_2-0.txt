@@ -5,7 +5,7 @@
 			var jsonObject = {
 				"auth": {
 					"passwordCredentials":{
-						"username": "edouard10",
+						"username": "user",
 						"password": "pass"
 					}
 				}
@@ -15,8 +15,8 @@
 			var jsonObject = {
 				"auth": {
 					"RAX-KSKEY:apiKeyCredentials": {
-						"username": "edouard10",
-						"apiKey": "dfa03012af20d5d9c9b8220e70953609"
+						"username": "user",
+						"apiKey": "key"
 					}
 				}
 			};
