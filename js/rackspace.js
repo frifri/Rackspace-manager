@@ -14,8 +14,8 @@ Rackspace = {
 		getToken: function() {
 			var jsonObject = {
 				"credentials": {
-					"username": "user",
-					"key": "key"
+					"username": localStorage['username'],
+					"key": localStorage['apikey']
 				}
 			};
 
@@ -36,7 +36,7 @@ Rackspace = {
             contentType: "application/json",
             data: strData,
             error: function(jqXHR, status, errorThrown) {
-              console.log("Error during the request : " + errorThrown);
+              console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
             }
         });
 	}

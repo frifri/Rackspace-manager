@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// Loading the login values
+	// Loading the auth values
 	$('.content #settings_container input#username').val(localStorage['username']);
 	$('.content #settings_container input#apikey').val(localStorage['apikey']);
 	// ------------------------
