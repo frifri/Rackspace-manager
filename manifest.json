@@ -1,0 +1,23 @@
+{
+	// Required
+	"name": "Rackspace Manager",
+	"version": "1.1",
+
+	// Recommended
+	"description": "Easily manage your Rackspace account",
+	"icons": {
+		"16": "img/icon16.png",
+		"48": "img/icon48.png",
+		"128": "img/icon128.png"
+	},
+
+	// Everything else
+	"background_page": "bg.html",
+	"browser_action": {
+		"default_icon": "img/icon16.png",
+		"popup": "popup.html"
+	},
+	"permissions": [
+		"https://*.api.rackspacecloud.com/v1.1/*"
+	]
+}
