@@ -42,20 +42,20 @@ body {
 	text-decoration: none;
 }
 
-.content #settings_center {
+.content #settings_container {
 	display: block;
 	height: 100px;
 	width: 400px;
 	margin: 10px auto 0px auto;
 }
 
-.content #settings_center label {
+.content #settings_container label {
 	display: inline-block;
 	margin-left: 70px;
 	width: 100px;
 }
 
-.content #settings_center img#creds_validate {
+.content #settings_container img#creds_validate {
 	float: right;
 	margin-right: 80px;
 	cursor: pointer;
