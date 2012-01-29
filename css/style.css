@@ -41,3 +41,22 @@ body {
 	color: white;
 	text-decoration: none;
 }
+
+.content #settings_center {
+	display: block;
+	height: 100px;
+	width: 400px;
+	margin: 10px auto 0px auto;
+}
+
+.content #settings_center label {
+	display: inline-block;
+	margin-left: 70px;
+	width: 100px;
+}
+
+.content #settings_center img#creds_validate {
+	float: right;
+	margin-right: 80px;
+	cursor: pointer;
+}
