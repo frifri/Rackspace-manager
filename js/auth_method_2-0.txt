@@ -1,0 +1,24 @@
+			// v2.0 auth method
+			// ----------------
+			
+			/*// Password method
+			var jsonObject = {
+				"auth": {
+					"passwordCredentials":{
+						"username": "edouard10",
+						"password": "pass"
+					}
+				}
+			}
+
+			// API Key method
+			var jsonObject = {
+				"auth": {
+					"RAX-KSKEY:apiKeyCredentials": {
+						"username": "edouard10",
+						"apiKey": "dfa03012af20d5d9c9b8220e70953609"
+					}
+				}
+			};
+
+			Rackspace._request(jsonObject, "auth", Rackspace.apiVersion, "tokens", "POST");*/
