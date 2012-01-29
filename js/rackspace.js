@@ -2,7 +2,7 @@
  * Rackspace Manager
  *
  * Created by Francis Genet on 2012-01-29.
- * Copyright (c) 2011 Francis Genet. All rights reserved.
+ * Copyright (c) 2012 Francis Genet. All rights reserved.
  *
  */
 
