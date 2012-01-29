@@ -2,3 +2,42 @@ body {
 	width: 600px;
 	height: 300px;
 }
+
+.header {
+	display: block;
+	color: white;
+	background-color: black;
+	height: 22px;
+	border-radius: 2px;
+}
+
+.header ul {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: -30px;
+}
+
+.header ul li {
+	margin-top: 2px;
+	display: inline-block;
+}
+
+.header ul li.active a {
+	color: red;
+}
+
+.header ul.rightNav {
+	float: right;
+	margin-top: -25px;
+	margin-right: 5px;
+}
+
+.header ul li a:hover {
+	color: red;
+	text-decoration: none;
+}
+
+.header ul li a {
+	color: white;
+	text-decoration: none;
+}
