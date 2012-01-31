@@ -18,6 +18,7 @@
 		"popup": "pages/popup.html"
 	},
 	"permissions": [
-		"https://*.api.rackspacecloud.com/v1.1/*"
+		"https://*.api.rackspacecloud.com/v1.1/*",
+		"https://*.api.rackspacecloud.com/v1.0/*"
 	]
 }
