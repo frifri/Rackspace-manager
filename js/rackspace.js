@@ -23,10 +23,10 @@ Rackspace = {
 			};
 			
 			// Building the url
-			// https://auth.api.rackspacecloud.com/auth
+			// https://auth.api.rackspacecloud.com/v1.1/auth
 			var strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
 			
-			Rackspace._request(jsonObject, strUrl, "POST", function(data) {
+			Rackspace._request(jsonObject, strUrl, "POST", false, function(data) {
 				Rackspace.token = data.auth.token.id;
 				Rackspace.Server.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
@@ -36,23 +36,40 @@ Rackspace = {
 	Server: {
 		// Dynamic url returned by Rackspace
 		public_url : "",
-	
-		getDetailedList: function() {
+		
+		// Getting the server list (simple)
+		getList: function(rtrnVal) {
+			var strUrl = Rackspace.Server.public_url + "/servers";
 			
+			Rackspace._request(null, strUrl, "GET", true, function(data) {
+				rtrnVal(data);
+			});
+		}
+	
+		// Getting the server list (with details)
+		getDetailedList: function(rtrnVal) {
+			var strUrl = Rackspace.Server.public_url + "/servers/detail";
+			
+			Rackspace._request(null, strUrl, "GET", true, function(data) {
+				rtrnVal(data);
+			});
 		}
 	},
 
 	// REST request
-	_request: function(jsonObject, strUrl, reqType, rtrnVal) {
+	_request: function(jsonObject, strUrl, reqType, bAsync, rtrnVal) {
 		// The json MUST be stringify in order to send it to Rackspace
-		var strData = JSON.stringify(jsonObject);
+		if(jsonObject)
+			var strData = JSON.stringify(jsonObject);
+		else
+			var strData = null;
         
         $.ajax({
             url: strUrl,
             type: reqType,
             dataType: "json",
             contentType: "application/json",
-			async: false,
+			async: bAsync,
 			beforeSend: function(xhr, settings) {
 				if(Rackspace.token != "")
 					xhr.setRequestHeader('X-Auth-Token', Rackspace.token);

@@ -6,6 +6,7 @@ $(document).ready(function() {
 
 	$('.content a h2').click(function() {
 		Rackspace.Auth.getToken();
+		Rackspace.Server.getDetailedList();
 	});
 	
 	// Saving settings
