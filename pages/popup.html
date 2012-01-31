@@ -3,31 +3,35 @@
   <head>
     <!-- Le styles -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
 
     <!-- Le scripts -->
     <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../js/rackspace.js"></script>
     <script type="text/javascript" src="../js/docReady.js"></script>
+    <script type="text/javascript" src="../js/dataTable_bootstrap.js"></script>
+
   </head>
-  <body style="padding-top:40px;">
+  <body style="padding-top:40px; overflow:hidden;">
 
     <!-- Le Content -->
-    <div class="container">
-      <div class="topbar">
-        <div class="topbar-inner">
-          <div class="container">
-            <a class="brand" href="#">Rackspace</a>
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="settings.html">Settings</a></li>
-            </ul>
-          </div>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Rackspace</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="settings.html">Settings</a></li>
+          </ul>
         </div>
       </div>
+    </div>
 
+    <a id="testTable" href="#">Click here</a>
+    <div class="span12">
       <table id="srvTable">
       </table>
-
     </div>
   <!-- / Le Content -->
 

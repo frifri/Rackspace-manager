@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	// Loading the auth values
-	$('.content #settings_container input#username').val(localStorage['username']);
-	$('.content #settings_container input#apikey').val(localStorage['apikey']);
+	$('#settings_form input#username').val(localStorage['username']);
+	$('#settings_form input#apikey').val(localStorage['apikey']);
 	// ------------------------
 
-	$('.content a h2').click(function() {
+	$('a#testTable').click(function() {
 		Rackspace.Auth.getToken();
 		Rackspace.Server.getDetailedList(false, function(data) {
 			var servers = data.servers;
@@ -27,6 +27,8 @@ $(document).ready(function() {
 				arServerList[key] = [srvName, srvStatus, srvPubIp, srvPrvIp];
 			});
 
+			console.log(arServerList);
+
 			$('#srvTable').dataTable({
 				"aaData": arServerList,
 				"aoColumns": [
@@ -34,15 +36,17 @@ $(document).ready(function() {
 					{"sTitle": "Status"},
 					{"sTitle": "Public IP(s)"},
 					{"sTitle": "Private IP(s)"}
-				]
+				],
+				"sDom": "<'row'<'span5'l><'span6'f>r>t<'row'<'span5'i><'span6'p>>",
+				"sPaginationType": "bootstrap"
 			});
 		});
 	});
 	
 	// Saving settings
-	$('.content #settings_container img#creds_validate').click(function() {
-		var username = $('.content #settings_container input#username').val();
-		var apikey = $('.content #settings_container input#apikey').val();
+	$('#settings_form a#settings_save').click(function() {
+		var username = $('#settings_form input#username').val();
+		var apikey = $('#settings_form input#apikey').val();
 
 		if(username != '' && apikey != '') {
 			localStorage['username'] = username;
