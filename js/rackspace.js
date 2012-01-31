@@ -12,7 +12,7 @@ Rackspace = {
 	// Version of the current Rackspace API
 	apiversion : "1.0",
 	// The main API url (should not change)
-	baseApiUrl : "api.rackspacecloud.com",
+	baseApiUrl : "api.rackspacecloud.com/",
 
 	Auth: {
 		getToken: function() {
@@ -25,7 +25,7 @@ Rackspace = {
 			
 			// building the url
 			// https://auth.api.rackspacecloud.com/auth
-			var strUrl = "https://auth." + baseApiUrl + "/auth";
+			var strUrl = "https://auth." + baseApiUrl + authVersion + "/auth";
 			
 			Rackspace._request(jsonObject, strUrl, "POST", function(data) {
 				console.log(data);
