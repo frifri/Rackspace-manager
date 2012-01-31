@@ -3,32 +3,50 @@
   <head>
     <!-- Le styles -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- Le scripts -->
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/docReady.js"></script>
   </head>
-  <body>
-
-    <!-- Le Header -->
-    <div class="header">
-      <ul>
-        <li><a href="popup.html">Home</a></li>
-      </ul>
-
-      <ul class="rightNav">
-        <li class="active"><a href="#">Settings</a></li>
-      </ul>
-    </div>
-    <!-- / Le Header -->
+  <body style="padding-top:40px; overflow: hidden;">
 
     <!-- Le Content -->
-    <div class="content">
-      <div id="settings_container">
-        <label for="username">Username:</label><input id="username" type="text"><br />
-        <label for="apikey">API Key:</label><input id="apikey" type="text"><br />
-        <img src="../img/validate_button.png" id="creds_validate">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Rackspace</a>
+          <ul class="nav">
+            <li><a href="popup.html">Home</a></li>
+            <li class="active"><a href="#">Settings</a></li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="span8">
+      <form>
+        <fieldset>
+
+          <div class="clearfix">
+            <label for="username">Username</label>
+            <div class="input">
+              <input class="span3" id="username" type="text">
+            </div>
+          </div>
+
+          <div class="clearfix">
+            <label for="apikey">API Key</label>
+            <div class="input">
+              <input class="span3" id="apikey" type="text">
+            </div>
+          </div>
+
+          <div class="actions">
+            <a href="#" class="btn primary">Save</a>
+          </div>
+        </fieldset>
+      </form>
     </div>
   <!-- / Le Content -->
 
