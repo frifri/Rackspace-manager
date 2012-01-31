@@ -38,19 +38,19 @@ Rackspace = {
 		public_url : "",
 		
 		// Getting the server list (simple)
-		getList: function(rtrnVal) {
+		getList: function(bAsync, rtrnVal) {
 			var strUrl = Rackspace.Server.public_url + "/servers";
 			
-			Rackspace._request(null, strUrl, "GET", true, function(data) {
+			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
 				rtrnVal(data);
 			});
-		}
+		},
 	
 		// Getting the server list (with details)
-		getDetailedList: function(rtrnVal) {
+		getDetailedList: function(bAsync, rtrnVal) {
 			var strUrl = Rackspace.Server.public_url + "/servers/detail";
 			
-			Rackspace._request(null, strUrl, "GET", true, function(data) {
+			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
 				rtrnVal(data);
 			});
 		}
