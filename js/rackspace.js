@@ -61,7 +61,7 @@ Rackspace = {
 		// The json MUST be stringify in order to send it to Rackspace
 		if(jsonObject)
 			var strData = JSON.stringify(jsonObject);
-		else
+		else 	// If the object is empty.
 			var strData = null;
         
         $.ajax({
