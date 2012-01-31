@@ -7,14 +7,13 @@
  */
 
 Rackspace = {
-	// Version of the current Rackspace auth API
-	authVersion : "1.1",
-	// Version of the current Rackspace API
-	apiversion : "1.0",
-	// The main API url (should not change)
-	baseApiUrl : "api.rackspacecloud.com/",
+	// Auth Token
+	token : "",
 
 	Auth: {
+		// Version of the current Rackspace auth API
+		authVersion : "v1.1",
+	
 		getToken: function() {
 			var jsonObject = {
 				"credentials": {
@@ -23,13 +22,23 @@ Rackspace = {
 				}
 			};
 			
-			// building the url
+			// Building the url
 			// https://auth.api.rackspacecloud.com/auth
-			var strUrl = "https://auth." + baseApiUrl + authVersion + "/auth";
+			var strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
 			
 			Rackspace._request(jsonObject, strUrl, "POST", function(data) {
-				console.log(data);
+				Rackspace.token = data.auth.token.id;
+				Rackspace.Server.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
+		}
+	},
+	
+	Server: {
+		// Dynamic url returned by Rackspace
+		public_url : "",
+	
+		getDetailedList: function() {
+			
 		}
 	},
 
@@ -43,6 +52,11 @@ Rackspace = {
             type: reqType,
             dataType: "json",
             contentType: "application/json",
+			async: false,
+			beforeSend: function(xhr, settings) {
+				if(Rackspace.token != "")
+					xhr.setRequestHeader('X-Auth-Token', Rackspace.token);
+			},
             data: strData,
 			success: function(data) {
 				rtrnVal(data);

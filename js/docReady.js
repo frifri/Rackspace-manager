@@ -4,6 +4,10 @@ $(document).ready(function() {
 	$('.content #settings_container input#apikey').val(localStorage['apikey']);
 	// ------------------------
 
+	$('.content a h2').click(function() {
+		Rackspace.Auth.getToken();
+	});
+	
 	// Saving settings
 	$('.content #settings_container img#creds_validate').click(function() {
 		var username = $('.content #settings_container input#username').val();
