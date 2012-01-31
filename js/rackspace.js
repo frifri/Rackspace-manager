@@ -7,8 +7,12 @@
  */
 
 Rackspace = {
-	// Version of the Rackspace API that we are gonna use
-	apiVersion : "v1.1",
+	// Version of the current Rackspace auth API
+	authVersion : "1.1",
+	// Version of the current Rackspace API
+	apiversion : "1.0",
+	// The main API url (should not change)
+	baseApiUrl : "api.rackspacecloud.com",
 
 	Auth: {
 		getToken: function() {
@@ -18,16 +22,21 @@ Rackspace = {
 					"key": localStorage['apikey']
 				}
 			};
-
-			Rackspace._request(jsonObject, "auth", Rackspace.apiVersion, "auth", "POST");
+			
+			// building the url
+			// https://auth.api.rackspacecloud.com/auth
+			var strUrl = "https://auth." + baseApiUrl + "/auth";
+			
+			Rackspace._request(jsonObject, strUrl, "POST", function(data) {
+				console.log(data);
+			});
 		}
 	},
 
 	// REST request
-	_request: function(jsonObject, srvTarget, apiVersion, srvMethod, reqType) {
+	_request: function(jsonObject, strUrl, reqType, rtrnVal) {
 		// The json MUST be stringify in order to send it to Rackspace
 		var strData = JSON.stringify(jsonObject);
-		var strUrl = "https://" + srvTarget + ".api.rackspacecloud.com/" + apiVersion + "/" + srvMethod;
         
         $.ajax({
             url: strUrl,
@@ -35,8 +44,11 @@ Rackspace = {
             dataType: "json",
             contentType: "application/json",
             data: strData,
+			success: function(data) {
+				rtrnVal(data);
+			},
             error: function(jqXHR, status, errorThrown) {
-              console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
+				console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
             }
         });
 	}
