@@ -51,8 +51,14 @@ $(document).ready(function() {
 		if(username != '' && apikey != '') {
 			localStorage['username'] = username;
 			localStorage['apikey'] = apikey;
+
+			Utils.writeMessage("Credentials successfully saved", "success");
 		} else {
-			console.log("an empty input... Boloss!")
+			Utils.writeMessage("Please enter a username AND a password", "warning");
 		}
+	});
+
+	$('#message_container a.close').live("click", function() {
+		Utils.removeMessage();
 	});
 });
