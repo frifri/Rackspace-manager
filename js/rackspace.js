@@ -28,122 +28,261 @@ Rackspace = {
 			
 			Rackspace._request(jsonObject, strUrl, "POST", false, function(data) {
 				Rackspace.token = data.auth.token.id;
-				Rackspace.Server.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
+				Rackspace.Servers.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
 		}
 	},
 	
-	Server: {
+	Servers: {
 		// Dynamic url returned by Rackspace
 		public_url : "",
 		
-		// Getting the server list (simple)
+		// Retrieving the server list (simple)
 		getList: function(bAsync, rtrnVal) {
-			var strUrl = Rackspace.Server.public_url + "/servers";
+			var strUrl = Rackspace.Servers.public_url + "/servers";
 			
 			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
 				rtrnVal(data);
 			});
 		},
 	
-		// Getting the server list (with details)
+		// Retrieving the server list (with details)
 		getDetailedList: function(bAsync, rtrnVal) {
-			var strUrl = Rackspace.Server.public_url + "/servers/detail";
+			var strUrl = Rackspace.Servers.public_url + "/servers/detail";
 			
 			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
-
-				var test = {
-				    "servers" : [
-				        {
-				            "id" : 1234,
-				            "name" : "sample-server",
-				            "imageId" : 1,
-				            "flavorId" : 1,
-				            "hostId" : "e4d909c290d0fb1ca068ffaddf22cbd0",
-				            "status" : "BUILD",
-				            "progress" : 60,
-				            "addresses" : {
-				                "public" : [
-				                    "67.23.10.132",
-				                    "67.23.10.131"
-				                ],
-				                "private" : [
-				                    "10.176.42.16"
-				                ]
-				            },
-				            "metadata" : {
-				                "Server Label" : "Web Head 1",
-				                "Image Version" : "2.1"
-				            }
-				        },
-				        {
-					        "id" : 5678,
-				            "name" : "sample-server2",
-				            "imageId" : 1,
-				            "flavorId" : 1,
-				            "hostId" : "9e107d9d372bb6826bd81d3542a419d6",
-				            "status" : "ACTIVE",
-				            "addresses" : {
-				                "public" : [
-				                    "67.23.10.133"
-				                ],
-				                "private" : [
-				                    "10.176.42.17"
-				                ] 
-				            },
-				            "metadata" : {
-				                "Server Label" : "DB 1"
-				            }
-				        },
-				        {
-				            "id" : 1234,
-				            "name" : "sample-server",
-				            "imageId" : 1,
-				            "flavorId" : 1,
-				            "hostId" : "e4d909c290d0fb1ca068ffaddf22cbd0",
-				            "status" : "BUILD",
-				            "progress" : 60,
-				            "addresses" : {
-				                "public" : [
-				                    "67.23.10.132",
-				                    "67.23.10.131"
-				                ],
-				                "private" : [
-				                    "10.176.42.16"
-				                ]
-				            },
-				            "metadata" : {
-				                "Server Label" : "Web Head 1",
-				                "Image Version" : "2.1"
-				            }
-				        },
-				        {
-				            "id" : 1234,
-				            "name" : "sample-server",
-				            "imageId" : 1,
-				            "flavorId" : 1,
-				            "hostId" : "e4d909c290d0fb1ca068ffaddf22cbd0",
-				            "status" : "BUILD",
-				            "progress" : 60,
-				            "addresses" : {
-				                "public" : [
-				                    "67.23.10.132",
-				                    "67.23.10.131"
-				                ],
-				                "private" : [
-				                    "10.176.42.16"
-				                ]
-				            },
-				            "metadata" : {
-				                "Server Label" : "Web Head 1",
-				                "Image Version" : "2.1"
-				            }
-				        },
-				    ] 
-				}
-
-				rtrnVal(test);
+				rtrnVal(data);
 			});
+		},
+
+		// Retrieving a specific server
+		get: function(srvId, bAsync, rtrnVal) {
+			if(srvId != "") {
+				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
+				
+				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			} else {
+				rtrnVal(false);
+			}
+		},
+
+		// Creating a server
+		create: function(srvName, imgId, flavId, bAsync, rtrnVal) {
+			if(srvId != "" && imgId != "" && flavId != "") {
+				var jsonObj = {
+					"server": {
+						"name": srvName,
+						"imageId": imgId,
+						"flavorId": flavId
+					}
+				};
+
+				var strUrl = Rackspace.Servers.public_url + "/servers";
+
+				Rackspace._request(jsonObj, strUrl, "POST", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			} else {
+				rtrnVal(false);
+			}
+		},
+
+		// Retrieving a specific server
+		deleteServer: function(srvId, bAsync, rtrnVal) {
+			if(srvId != "") {
+				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
+				
+				Rackspace._request(null, strUrl, "DELETE", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			} else {
+				rtrnVal(false);
+			}
+		},
+
+		Action: {
+			// Reboot a server
+			// HARD or SOFT reboot
+			reboot: function(type, srvId, rtrnVal) {
+				if(type == "HARD"  || type = "SOFT") {
+					var jsonObj = {
+						"reboot": {
+							"type": type
+						}	
+					};
+
+					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+
+					Rackspace._request(null, strUrl, "POST", true, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false);
+				}
+			},
+
+
+			rebuild: function(srvId, imgId, rtrnVal) {
+				if(srvId != "" && imgId != "") {
+					var jsonObj = {
+						"rebuild": {
+							"imageId": imgId
+						}	
+					};
+
+					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+
+					Rackspace._request(null, strUrl, "POST", true, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false)
+				}
+			},
+
+			// Resize action
+			Resize: {
+				// Resizing the server
+				// (Modifying its flavor)
+				doResize: function(srvId, flavId, rtrnVal) {
+					if(servId != "" && imgId != "") {
+						var jsonObj = {
+							"resize": {
+								"flavorId": flavId
+							}	
+						};
+
+						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+
+						Rackspace._request(null, strUrl, "POST", true, function(data) {
+							rtrnVal(data);
+						});
+					} else {
+						rtrnVal(false);
+					}
+				}, 
+
+				// Confirm the resize
+				confirm: function(srvId, rtrnVal) {
+					if(servId != "" && imgId != "") {
+						var jsonObj = {
+							"confirmResize": null	
+						};
+
+						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+
+						Rackspace._request(null, strUrl, "POST", true, function(data) {
+							rtrnVal(data);
+						});
+					} else {
+						rtrnVal(false);
+					}
+				},
+
+				// Revert the resize
+				revert: function(srvId, rtrnVal) {
+					if(servId != "" && imgId != "") {
+						var jsonObj = {
+							"revertResize": null	
+						};
+
+						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+
+						Rackspace._request(null, strUrl, "POST", true, function(data) {
+							rtrnVal(data);
+						});
+					} else {
+						rtrnVal(false);
+					}
+				}
+			}
+		},
+
+		Flavors: {
+			// Getting the flavor list (simple)
+			getList: function(bAsync, rtrnVal) {
+				var strUrl = Rackspace.Servers.public_url + "/flavors";
+
+				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			},
+
+			// Getting the server list (with details)
+			getDetailedList: function(bAsync, rtrnVal) {
+				var strUrl = Rackspace.Servers.public_url + "/flavors/detail";
+				
+				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			},
+
+			getFlavor: function(flavId, bAsync, rtrnVal) {
+				if(flavId != "") {
+					var strUrl = Rackspace.Servers.public_url + "/flavors/" + flavId;
+
+					Rackspace._request(null, strUrl, "GET", true, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false);
+				}
+			}
+		},
+
+		Images: {
+			// Getting the flavor list (simple)
+			getList: function(bAsync, rtrnVal) {
+				var strUrl = Rackspace.Servers.public_url + "/images";
+
+				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			},
+
+			// Getting the server list (with details)
+			getDetailedList: function(bAsync, rtrnVal) {
+				var strUrl = Rackspace.Servers.public_url + "/images/detail";
+				
+				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			},
+
+			getImage: function(imgId, bAsync, rtrnVal) {
+				if(imgId != "") {
+					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
+
+					Rackspace._request(null, strUrl, "GET", true, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false);
+				}
+			},
+
+			// Creating an image
+			create: function (bAsync, rtrnVal) {
+				var strUrl = Rackspace.Servers.public_url + "/images/detail";
+				
+				Rackspace._request(jsonObj, strUrl, "POST", bAsync, function(data) {
+					rtrnVal(data);
+				});
+			},
+
+			deleteImage: function(imgId, rtrnVal) {
+				if(imgId != "") {
+					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
+					
+					Rackspace._request(null, strUrl, "DELETE", true, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false);
+				}
+			}
 		}
 	},
 

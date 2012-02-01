@@ -20,7 +20,7 @@ $(document).ready(function() {
 				});
 
 				var srvPrvIp = "";
-				$.each(server.addresses.public, function(ipKey, prvIp) {
+				$.each(server.addresses.private, function(ipKey, prvIp) {
 					srvPrvIp = srvPrvIp + prvIp + " ";
 				});
 
