@@ -1,5 +1,5 @@
 /*
- * Rackspace Manager
+ * Rackspace Server Lib
  *
  * Created by Francis Genet on 2012-01-29.
  * Copyright (c) 2012 Francis Genet. All rights reserved.
@@ -26,7 +26,7 @@ Rackspace = {
 			// https://auth.api.rackspacecloud.com/v1.1/auth
 			var strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
 			
-			Rackspace._request(jsonObject, strUrl, "POST", false, function(data) {
+			Rest.post(jsonObject, strUrl, false, function(data) {
 				Rackspace.token = data.auth.token.id;
 				Rackspace.Servers.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
@@ -40,17 +40,17 @@ Rackspace = {
 		// Retrieving the server list (simple)
 		getList: function(bAsync, rtrnVal) {
 			var strUrl = Rackspace.Servers.public_url + "/servers";
-			
-			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+
+			Rest.get(null, strUrl, bAsync, function(data) {
 				rtrnVal(data);
-			});
+			})
 		},
 	
 		// Retrieving the server list (with details)
 		getDetailedList: function(bAsync, rtrnVal) {
 			var strUrl = Rackspace.Servers.public_url + "/servers/detail";
 			
-			Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+			Rest.get(null, strUrl, bAsync, function(data) {
 				rtrnVal(data);
 			});
 		},
@@ -60,7 +60,7 @@ Rackspace = {
 			if(srvId != "") {
 				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
 				
-				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			} else {
@@ -81,7 +81,7 @@ Rackspace = {
 
 				var strUrl = Rackspace.Servers.public_url + "/servers";
 
-				Rackspace._request(jsonObj, strUrl, "POST", bAsync, function(data) {
+				Rest.post(jsonObj, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			} else {
@@ -94,7 +94,7 @@ Rackspace = {
 			if(srvId != "") {
 				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
 				
-				Rackspace._request(null, strUrl, "DELETE", bAsync, function(data) {
+				Rest.delete(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			} else {
@@ -115,7 +115,7 @@ Rackspace = {
 
 					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
 
-					Rackspace._request(null, strUrl, "POST", true, function(data) {
+					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else {
@@ -134,7 +134,7 @@ Rackspace = {
 
 					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
 
-					Rackspace._request(null, strUrl, "POST", true, function(data) {
+					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else {
@@ -156,7 +156,7 @@ Rackspace = {
 
 						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
 
-						Rackspace._request(null, strUrl, "POST", true, function(data) {
+						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
 					} else {
@@ -173,7 +173,7 @@ Rackspace = {
 
 						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
 
-						Rackspace._request(null, strUrl, "POST", true, function(data) {
+						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
 					} else {
@@ -182,7 +182,7 @@ Rackspace = {
 				},
 
 				// Revert the resize
-				revert: function(srvId, rtrnVal) {
+				revert: function(srvId, bAsync, rtrnVal) {
 					if(servId != "" && imgId != "") {
 						var jsonObj = {
 							"revertResize": null	
@@ -190,7 +190,7 @@ Rackspace = {
 
 						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
 
-						Rackspace._request(null, strUrl, "POST", true, function(data) {
+						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
 					} else {
@@ -205,7 +205,7 @@ Rackspace = {
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = Rackspace.Servers.public_url + "/flavors";
 
-				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			},
@@ -214,16 +214,16 @@ Rackspace = {
 			getDetailedList: function(bAsync, rtrnVal) {
 				var strUrl = Rackspace.Servers.public_url + "/flavors/detail";
 				
-				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			},
 
-			getFlavor: function(flavId, bAsync, rtrnVal) {
+			get: function(flavId, bAsync, rtrnVal) {
 				if(flavId != "") {
 					var strUrl = Rackspace.Servers.public_url + "/flavors/" + flavId;
 
-					Rackspace._request(null, strUrl, "GET", true, function(data) {
+					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else {
@@ -237,7 +237,7 @@ Rackspace = {
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = Rackspace.Servers.public_url + "/images";
 
-				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			},
@@ -246,16 +246,17 @@ Rackspace = {
 			getDetailedList: function(bAsync, rtrnVal) {
 				var strUrl = Rackspace.Servers.public_url + "/images/detail";
 				
-				Rackspace._request(null, strUrl, "GET", bAsync, function(data) {
+				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
 			},
 
-			getImage: function(imgId, bAsync, rtrnVal) {
+			// Retrieving a specific image
+			get: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
 					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
 
-					Rackspace._request(null, strUrl, "GET", true, function(data) {
+					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else {
@@ -264,19 +265,30 @@ Rackspace = {
 			},
 
 			// Creating an image
-			create: function (bAsync, rtrnVal) {
-				var strUrl = Rackspace.Servers.public_url + "/images/detail";
+			create: function (srvId, imgName, bAsync, rtrnVal) {
+				if(srvId != "" && imgName != "") {
+					var jsonObj = {
+						"image": {
+							"serverId": srvId,
+							"name": imgName
+						}
+					}
+
+					var strUrl = Rackspace.Servers.public_url + "/images";
 				
-				Rackspace._request(jsonObj, strUrl, "POST", bAsync, function(data) {
-					rtrnVal(data);
-				});
+					Rest.post(jsonObj, strUrl, bAsync, function(data) {
+						rtrnVal(data);
+					});
+				} else {
+					rtrnVal(false);
+				}
 			},
 
-			deleteImage: function(imgId, rtrnVal) {
+			deleteImage: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
 					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
 					
-					Rackspace._request(null, strUrl, "DELETE", true, function(data) {
+					Rest.delete(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else {
@@ -284,33 +296,5 @@ Rackspace = {
 				}
 			}
 		}
-	},
-
-	// REST request
-	_request: function(jsonObject, strUrl, reqType, bAsync, rtrnVal) {
-		// The json MUST be stringify in order to send it to Rackspace
-		if(jsonObject)
-			var strData = JSON.stringify(jsonObject);
-		else 	// If the object is empty.
-			var strData = null;
-        
-        $.ajax({
-            url: strUrl,
-            type: reqType,
-            dataType: "json",
-            contentType: "application/json",
-			async: bAsync,
-			beforeSend: function(xhr, settings) {
-				if(Rackspace.token != "")
-					xhr.setRequestHeader('X-Auth-Token', Rackspace.token);
-			},
-            data: strData,
-			success: function(data) {
-				rtrnVal(data);
-			},
-            error: function(jqXHR, status, errorThrown) {
-				console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
-            }
-        });
 	}
 };
