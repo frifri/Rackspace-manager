@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$('a#testTable').click(function() {
 		Rackspace.Auth.getToken();
-		Rackspace.Server.getDetailedList(false, function(data) {
+		Rackspace.Servers.getDetailedList(false, function(data) {
 			var servers = data.servers;
 			var arServerList = new Array();
 
