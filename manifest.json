@@ -1,7 +1,7 @@
 {
 	// Required
 	"name": "Rackspace Manager",
-	"version": "1.1",
+	"version": "1.1.0",
 
 	// Recommended
 	"description": "Quickly see your Rackspace servers informations",
