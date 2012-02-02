@@ -1,4 +1,11 @@
+------ TODO -------
+-------------------
+
 -	Use the "Change-Since" Parameter in order to limit the requests
+
+------ DONE -------
+-------------------
+
 -	Manage the case Where the user didn't enter credentials
 -	Add a message div (errors etc.)
 -	manage the case where there are no servers on the account (docReady + dataTable)
