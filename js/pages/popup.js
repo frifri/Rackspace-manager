@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	if(localStorage['username'] != "" && localStorage['apikey'] != "") {
+	if(localStorage['username'] != null && localStorage['apikey'] != null) {
 		Rackspace.Auth.getToken();
 		Rackspace.Servers.getDetailedList(false, function(data) {
 			var servers = data.servers;
