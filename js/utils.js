@@ -11,6 +11,7 @@ Utils = {
 		var target = $('#message_container');
 		target.removeClass('alert-message');
 		target.removeClass(target.attr('class'));
+		target.addClass('span5');
 		target.html("");
 	}
 }
