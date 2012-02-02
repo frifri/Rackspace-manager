@@ -26,3 +26,8 @@ table {
     margin: 1em 0;
     clear: both;
 }
+
+div#message_container {
+    margin: auto;
+    margin-top: 5px;
+}
