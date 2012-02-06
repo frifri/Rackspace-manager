@@ -49,6 +49,8 @@ Rest = {
 			var strData = JSON.stringify(jsonObject);
 		else 	// If the object is empty.
 			var strData = null;
+
+		var finalStrUrl = localStorage['srv_pub_url'] + strUrl;
         
         $.ajax({
             url: strUrl,

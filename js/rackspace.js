@@ -42,7 +42,7 @@ Rackspace = {
 				var d = new Date;
 				localStorage['ttl'] = d.getTime() + 86400000;
 				localStorage['token'] = data.auth.token.id;
-				Rackspace.Servers.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
+				localStorage['srv_pub_url'] = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
 		},
 
@@ -66,7 +66,7 @@ Rackspace = {
 		
 		// Retrieving the server list (simple)
 		getList: function(bAsync, rtrnVal) {
-			var strUrl = Rackspace.Servers.public_url + "/servers";
+			var strUrl = "/servers";
 
 			Rest.get(null, strUrl, bAsync, function(data) {
 				rtrnVal(data);
@@ -75,7 +75,7 @@ Rackspace = {
 	
 		// Retrieving the server list (with details)
 		getDetailedList: function(bAsync, rtrnVal) {
-			var strUrl = Rackspace.Servers.public_url + "/servers/detail";
+			var strUrl = "/servers/detail";
 			
 			Rest.get(null, strUrl, bAsync, function(data) {
 				rtrnVal(data);
@@ -85,7 +85,7 @@ Rackspace = {
 		// Retrieving a specific server
 		get: function(srvId, bAsync, rtrnVal) {
 			if(srvId != "") {
-				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
+				var strUrl = "/servers/" + srvId;
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -106,7 +106,7 @@ Rackspace = {
 					}
 				};
 
-				var strUrl = Rackspace.Servers.public_url + "/servers";
+				var strUrl = "/servers";
 
 				Rest.post(jsonObj, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -119,7 +119,7 @@ Rackspace = {
 		// Retrieving a specific server
 		deleteServer: function(srvId, bAsync, rtrnVal) {
 			if(srvId != "") {
-				var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId;
+				var strUrl = "/servers/" + srvId;
 				
 				Rest.delete(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -140,7 +140,7 @@ Rackspace = {
 						}	
 					};
 
-					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+					var strUrl = "/servers/" + srvId + "/action";
 
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
@@ -159,7 +159,7 @@ Rackspace = {
 						}	
 					};
 
-					var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+					var strUrl = "/servers/" + srvId + "/action";
 
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
@@ -181,7 +181,7 @@ Rackspace = {
 							}	
 						};
 
-						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+						var strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
@@ -198,7 +198,7 @@ Rackspace = {
 							"confirmResize": null	
 						};
 
-						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+						var strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
@@ -215,7 +215,7 @@ Rackspace = {
 							"revertResize": null	
 						};
 
-						var strUrl = Rackspace.Servers.public_url + "/servers/" + srvId + "/action";
+						var strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
@@ -230,7 +230,7 @@ Rackspace = {
 		Flavors: {
 			// Getting the flavor list (simple)
 			getList: function(bAsync, rtrnVal) {
-				var strUrl = Rackspace.Servers.public_url + "/flavors";
+				var strUrl = "/flavors";
 
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -239,7 +239,7 @@ Rackspace = {
 
 			// Getting the server list (with details)
 			getDetailedList: function(bAsync, rtrnVal) {
-				var strUrl = Rackspace.Servers.public_url + "/flavors/detail";
+				var strUrl = "/flavors/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -248,7 +248,7 @@ Rackspace = {
 
 			get: function(flavId, bAsync, rtrnVal) {
 				if(flavId != "") {
-					var strUrl = Rackspace.Servers.public_url + "/flavors/" + flavId;
+					var strUrl = "/flavors/" + flavId;
 
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
@@ -262,7 +262,7 @@ Rackspace = {
 		Images: {
 			// Getting the flavor list (simple)
 			getList: function(bAsync, rtrnVal) {
-				var strUrl = Rackspace.Servers.public_url + "/images";
+				var strUrl = "/images";
 
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -271,7 +271,7 @@ Rackspace = {
 
 			// Getting the server list (with details)
 			getDetailedList: function(bAsync, rtrnVal) {
-				var strUrl = Rackspace.Servers.public_url + "/images/detail";
+				var strUrl = "/images/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
@@ -281,7 +281,7 @@ Rackspace = {
 			// Retrieving a specific image
 			get: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
-					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
+					var strUrl = "/images/" + imgId;
 
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
@@ -301,7 +301,7 @@ Rackspace = {
 						}
 					}
 
-					var strUrl = Rackspace.Servers.public_url + "/images";
+					var strUrl = "/images";
 				
 					Rest.post(jsonObj, strUrl, bAsync, function(data) {
 						rtrnVal(data);
@@ -313,7 +313,7 @@ Rackspace = {
 
 			deleteImage: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
-					var strUrl = Rackspace.Servers.public_url + "/images/" + imgId;
+					var strUrl = "/images/" + imgId;
 					
 					Rest.delete(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
