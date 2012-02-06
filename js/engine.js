@@ -50,6 +50,7 @@ Rest = {
 		else 	// If the object is empty.
 			var strData = null;
 
+		// Building the final url.
 		var finalStrUrl = localStorage['srv_pub_url'] + strUrl;
         
         $.ajax({

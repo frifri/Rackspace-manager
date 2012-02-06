@@ -44,6 +44,7 @@ Rackspace = {
 			
 			Rest.post(jsonObject, strUrl, false, function(data) {
 				var d = new Date;
+				// The ttl is equal to the current unix time + 1 day
 				localStorage['ttl'] = d.getTime() + 86400000;
 				localStorage['token'] = data.auth.token.id;
 				localStorage['srv_pub_url'] = data.auth.serviceCatalog['cloudServers'][0].publicURL;
@@ -56,6 +57,8 @@ Rackspace = {
 			var curDate = d.getTime();
 			var ttl = localStorage['ttl'] - curDate;
 
+			// If the limit time less the current time is superior to 0
+			// Then the token is not expired
 			if(ttl > 0) {
 				return true;
 			} else {
@@ -65,7 +68,7 @@ Rackspace = {
 	},
 	
 	Servers: {
-		// Retrieving the server list (simple)
+		// Retrieve the server list (simple)
 		getList: function(bAsync, rtrnVal) {
 			var strUrl = "/servers";
 
@@ -74,7 +77,7 @@ Rackspace = {
 			})
 		},
 	
-		// Retrieving the server list (with details)
+		// Retrieve the server list (with details)
 		getDetailedList: function(bAsync, rtrnVal) {
 			var strUrl = "/servers/detail";
 			
@@ -83,7 +86,7 @@ Rackspace = {
 			});
 		},
 
-		// Retrieving a specific server
+		// Retrieve a specific server
 		get: function(srvId, bAsync, rtrnVal) {
 			if(srvId != "") {
 				var strUrl = "/servers/" + srvId;
@@ -96,7 +99,7 @@ Rackspace = {
 			}
 		},
 
-		// Creating a server
+		// Create a server
 		create: function(srvName, imgId, flavId, bAsync, rtrnVal) {
 			if(srvId != "" && imgId != "" && flavId != "") {
 				var jsonObj = {
@@ -117,7 +120,7 @@ Rackspace = {
 			}
 		},
 
-		// Retrieving a specific server
+		// Retrieve a specific server
 		deleteServer: function(srvId, bAsync, rtrnVal) {
 			if(srvId != "") {
 				var strUrl = "/servers/" + srvId;
@@ -151,7 +154,7 @@ Rackspace = {
 				}
 			},
 
-
+			// Rebuilding a server from a specific image
 			rebuild: function(srvId, imgId, rtrnVal) {
 				if(srvId != "" && imgId != "") {
 					var jsonObj = {
@@ -172,8 +175,8 @@ Rackspace = {
 
 			// Resize action
 			Resize: {
-				// Resizing the server
-				// (Modifying its flavor)
+				// Resize the server
+				// (Modify its flavor)
 				doResize: function(srvId, flavId, rtrnVal) {
 					if(servId != "" && imgId != "") {
 						var jsonObj = {
@@ -229,7 +232,7 @@ Rackspace = {
 		},
 
 		Flavors: {
-			// Getting the flavor list (simple)
+			// Get the flavor list (simple)
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = "/flavors";
 
@@ -238,7 +241,7 @@ Rackspace = {
 				});
 			},
 
-			// Getting the server list (with details)
+			// Get the flavor list (with details)
 			getDetailedList: function(bAsync, rtrnVal) {
 				var strUrl = "/flavors/detail";
 				
@@ -247,6 +250,7 @@ Rackspace = {
 				});
 			},
 
+			// Retrieve a specific flavor
 			get: function(flavId, bAsync, rtrnVal) {
 				if(flavId != "") {
 					var strUrl = "/flavors/" + flavId;
@@ -261,7 +265,7 @@ Rackspace = {
 		},
 
 		Images: {
-			// Getting the flavor list (simple)
+			// Get the image list (simple)
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = "/images";
 
@@ -270,7 +274,7 @@ Rackspace = {
 				});
 			},
 
-			// Getting the server list (with details)
+			// Get the image list (with details)
 			getDetailedList: function(bAsync, rtrnVal) {
 				var strUrl = "/images/detail";
 				
@@ -279,7 +283,7 @@ Rackspace = {
 				});
 			},
 
-			// Retrieving a specific image
+			// Retrieve a specific image
 			get: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
 					var strUrl = "/images/" + imgId;
@@ -292,7 +296,7 @@ Rackspace = {
 				}
 			},
 
-			// Creating an image
+			// Create an image
 			create: function (srvId, imgName, bAsync, rtrnVal) {
 				if(srvId != "" && imgName != "") {
 					var jsonObj = {
@@ -312,6 +316,7 @@ Rackspace = {
 				}
 			},
 
+			// Delete a specific image
 			deleteImage: function(imgId, bAsync, rtrnVal) {
 				if(imgId != "") {
 					var strUrl = "/images/" + imgId;
