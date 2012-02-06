@@ -71,8 +71,7 @@ Rest = {
 				rtrnVal(data);
 			},
             error: function(jqXHR, status, errorThrown) {
-            	console.log(jqXHR);
-				//console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
+				console.log("Error during the request : " + status + " (status code " + errorThrown + ")");
             }
         });
 	}

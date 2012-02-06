@@ -44,7 +44,7 @@ Rackspace = {
 			
 			Rest.post(jsonObject, strUrl, false, function(data) {
 				var d = new Date;
-				// The ttl is equal to the current unix time + 1 day
+				// The ttl is equal to the current unix time + 1 day (86400000 ms)
 				localStorage['ttl'] = d.getTime() + 86400000;
 				localStorage['token'] = data.auth.token.id;
 				localStorage['srv_pub_url'] = data.auth.serviceCatalog['cloudServers'][0].publicURL;
@@ -54,6 +54,7 @@ Rackspace = {
 		// return true if the token is still valid
 		isTokenValid: function() {
 			var d = new Date;
+			// timestamp
 			var curDate = d.getTime();
 			var ttl = localStorage['ttl'] - curDate;
 
