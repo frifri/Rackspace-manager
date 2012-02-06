@@ -57,18 +57,20 @@ Rest = {
             contentType: "application/json",
 			async: bAsync,
 			beforeSend: function(xhr, settings) {
-				if(Rackspace.token != "")
-					xhr.setRequestHeader('X-Auth-Token', Rackspace.token);
+
+
+
+				if(localStorage['token'] != "")
+					xhr.setRequestHeader('X-Auth-Token', localStorage['token']);
 			},
             data: strData,
 			success: function(data) {
 				rtrnVal(data);
 			},
             error: function(jqXHR, status, errorThrown) {
-				console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
+            	console.log(jqXHR);
+				//console.log("Error during the request : " + errorThrown + " (status code " + status + ")");
             }
         });
 	}
 }
-
-	

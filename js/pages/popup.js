@@ -1,10 +1,17 @@
 $(document).ready(function() {
 	if(localStorage['username'] != null && localStorage['apikey'] != null) {
-		Rackspace.Auth.getToken();
+
+		// Check if the current token is still valid
+		//if(!Rackspace.Auth.isTokenValid()) {
+			Rackspace.Auth.getToken();
+		//}
+		
+		// Retrieve the server list
 		Rackspace.Servers.getDetailedList(false, function(data) {
 			var servers = data.servers;
 			var arServerList = new Array();
 
+			// For each server
 			$.each(servers, function(key, server) {
 				var srvName = server.name;
 				var srvStatus = server.status;
@@ -21,8 +28,6 @@ $(document).ready(function() {
 
 				arServerList[key] = [srvName, srvStatus, srvPubIp, srvPrvIp];
 			});
-
-			console.log(arServerList);
 
 			$('#srvTable').dataTable({
 				"aaData": arServerList,

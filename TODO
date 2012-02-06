@@ -4,7 +4,6 @@
 -	Use the "Change-Since" Parameter in order to limit the requests
 -	Using the status codes return by the API to throw errors.
 - 	Dealing with the limits...
--	Find a good solution to avoid an Auth request each time
 
 ------ DONE -------
 -------------------
@@ -12,3 +11,4 @@
 -	Manage the case Where the user didn't enter credentials
 -	Add a message div (errors etc.)
 -	manage the case where there are no servers on the account (docReady + dataTable)
+-	Find a good solution to avoid an Auth request each time

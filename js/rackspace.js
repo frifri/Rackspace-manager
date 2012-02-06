@@ -21,8 +21,6 @@
 */
 
 Rackspace = {
-	// Auth Token
-	token : "",
 
 	Auth: {
 		// Version of the current Rackspace auth API
@@ -41,9 +39,24 @@ Rackspace = {
 			var strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
 			
 			Rest.post(jsonObject, strUrl, false, function(data) {
-				Rackspace.token = data.auth.token.id;
+				var d = new Date;
+				localStorage['ttl'] = d.getTime() + 86400000;
+				localStorage['token'] = data.auth.token.id;
 				Rackspace.Servers.public_url = data.auth.serviceCatalog['cloudServers'][0].publicURL;
 			});
+		},
+
+		// return true if the token is still valid
+		isTokenValid: function() {
+			var d = new Date;
+			var curDate = d.getTime();
+			var ttl = localStorage['ttl'] - curDate;
+
+			if(ttl > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	},
 	
