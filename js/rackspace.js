@@ -27,6 +27,10 @@ Rackspace = {
 		authVersion : "v1.1",
 	
 		getToken: function() {
+			// If getting a new token, we need to reset the public url
+			// Or else the url's gonna be the last public_url + the auth_url
+			localStorage['srv_pub_url'] = "";
+
 			var jsonObject = {
 				"credentials": {
 					"username": localStorage['username'],
@@ -61,9 +65,6 @@ Rackspace = {
 	},
 	
 	Servers: {
-		// Dynamic url returned by Rackspace
-		public_url : "",
-		
 		// Retrieving the server list (simple)
 		getList: function(bAsync, rtrnVal) {
 			var strUrl = "/servers";

@@ -2,9 +2,9 @@ $(document).ready(function() {
 	if(localStorage['username'] != null && localStorage['apikey'] != null) {
 
 		// Check if the current token is still valid
-		//if(!Rackspace.Auth.isTokenValid()) {
+		if(!Rackspace.Auth.isTokenValid()) {
 			Rackspace.Auth.getToken();
-		//}
+		}
 		
 		// Retrieve the server list
 		Rackspace.Servers.getDetailedList(false, function(data) {

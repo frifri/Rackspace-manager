@@ -53,7 +53,7 @@ Rest = {
 		var finalStrUrl = localStorage['srv_pub_url'] + strUrl;
         
         $.ajax({
-            url: strUrl,
+            url: finalStrUrl,
             type: reqType,
             dataType: "json",
             contentType: "application/json",
