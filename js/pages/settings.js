@@ -14,8 +14,7 @@ $(document).ready(function() {
 			localStorage['apikey'] = apikey;
 
 			Utils.writeMessage("Credentials successfully saved", "success");
-		} else {
+		} else 
 			Utils.writeMessage("Please enter a username AND a password", "error");
-		}
 	});
 });

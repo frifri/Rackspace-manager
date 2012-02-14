@@ -109,9 +109,8 @@ Rackspace = {
 				Rest.post(jsonObj, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
-			} else {
+			} else 
 				rtrnVal(false);
-			}
 		},
 
 		// Retrieving a specific server
@@ -122,9 +121,8 @@ Rackspace = {
 				Rest.delete(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
-			} else {
+			} else 
 				rtrnVal(false);
-			}
 		},
 
 		Action: {
@@ -142,9 +140,8 @@ Rackspace = {
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 
@@ -160,9 +157,8 @@ Rackspace = {
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false)
-				}
 			},
 
 			// Resize action
@@ -181,9 +177,8 @@ Rackspace = {
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				}, 
 
 				// Confirm the resize
@@ -197,9 +192,8 @@ Rackspace = {
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				},
 
 				// Revert the resize
@@ -213,9 +207,8 @@ Rackspace = {
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				}
 			}
 		},
@@ -246,9 +239,8 @@ Rackspace = {
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			}
 		},
 
@@ -279,9 +271,8 @@ Rackspace = {
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 			// Creating an image
@@ -298,9 +289,8 @@ Rackspace = {
 					Rest.post(jsonObj, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 			deleteImage: function(imgId, bAsync, rtrnVal) {
@@ -310,9 +300,8 @@ Rackspace = {
 					Rest.delete(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			}
 		}
 	}
