@@ -6,8 +6,8 @@ $(document).ready(function() {
 
 	// Saving settings
 	$('#settings_form a#settings_save').click(function() {
-		var username = $('#settings_form input#username').val();
-		var apikey = $('#settings_form input#apikey').val();
+		var username = $('#settings_form input#username').val(),
+			apikey = $('#settings_form input#apikey').val();
 
 		if(username != '' && apikey != '') {
 			localStorage['username'] = username;
