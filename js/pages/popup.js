@@ -40,7 +40,6 @@ $(document).ready(function() {
 				"sPaginationType": "bootstrap"
 			});
 		});
-	} else {
+	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
-	}
 });

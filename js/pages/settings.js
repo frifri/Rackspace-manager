@@ -5,7 +5,7 @@ $(document).ready(function() {
 	// ------------------------
 
 	// Saving settings
-	$('#settings_form a#settings_save').click(function() {
+	$(document).on("click", '#settings_form a#settings_save', function() {
 		var username = $('#settings_form input#username').val(),
 			apikey = $('#settings_form input#apikey').val();
 
