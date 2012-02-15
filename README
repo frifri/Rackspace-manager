@@ -1,0 +1,10 @@
+This Application will allow you to quickly know how your Rackspace Servers are doing (among some other informations).
+
+In the future, I will Add the ability to add/edit/delete servers, but also flavors, images and maybe more.
+
+Checkout the github repo at https://github.com/frifri/Rackspace-manager for the latest version.
+
+v1.1.1: Optimizing a bit and modifying the icon
+v1.1.0: Initial version.
+
+icon copyright (c) Emey87 - http://emey87.deviantart.com/
