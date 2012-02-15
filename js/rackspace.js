@@ -32,15 +32,15 @@ Rackspace = {
 			localStorage['srv_pub_url'] = "";
 
 			var jsonObject = {
-				"credentials": {
-					"username": localStorage['username'],
-					"key": localStorage['apikey']
-				}
-			};
+					"credentials": {
+						"username": localStorage['username'],
+						"key": localStorage['apikey']
+					}
+				},
 			
 			// Building the url
 			// https://auth.api.rackspacecloud.com/v1.1/auth
-			var strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
+				strUrl = "https://auth.api.rackspacecloud.com/" + Rackspace.Auth.authVersion + "/auth";
 			
 			Rest.post(jsonObject, strUrl, false, function(data) {
 				var d = new Date;
@@ -53,18 +53,14 @@ Rackspace = {
 
 		// return true if the token is still valid
 		isTokenValid: function() {
-			var d = new Date;
-			// timestamp
-			var curDate = d.getTime();
-			var ttl = localStorage['ttl'] - curDate;
+			var d = new Date
+				curDate = d.getTime(),
+				ttl = localStorage['ttl'] - curDate;
 
-			// If the limit time less the current time is superior to 0
-			// Then the token is not expired
-			if(ttl > 0) {
+			if(ttl > 0)
 				return true;
-			} else {
+			else
 				return false;
-			}
 		}
 	},
 	
@@ -95,30 +91,27 @@ Rackspace = {
 				Rest.get(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
-			} else {
+			} else
 				rtrnVal(false);
-			}
 		},
 
 		// Create a server
 		create: function(srvName, imgId, flavId, bAsync, rtrnVal) {
 			if(srvId != "" && imgId != "" && flavId != "") {
 				var jsonObj = {
-					"server": {
-						"name": srvName,
-						"imageId": imgId,
-						"flavorId": flavId
-					}
-				};
-
-				var strUrl = "/servers";
+						"server": {
+							"name": srvName,
+							"imageId": imgId,
+							"flavorId": flavId
+						}
+					},
+					strUrl = "/servers";
 
 				Rest.post(jsonObj, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
-			} else {
+			} else 
 				rtrnVal(false);
-			}
 		},
 
 		// Retrieve a specific server
@@ -129,9 +122,8 @@ Rackspace = {
 				Rest.delete(null, strUrl, bAsync, function(data) {
 					rtrnVal(data);
 				});
-			} else {
+			} else 
 				rtrnVal(false);
-			}
 		},
 
 		Action: {
@@ -140,38 +132,34 @@ Rackspace = {
 			reboot: function(type, srvId, rtrnVal) {
 				if(type == "HARD"  || type = "SOFT") {
 					var jsonObj = {
-						"reboot": {
-							"type": type
-						}	
-					};
-
-					var strUrl = "/servers/" + srvId + "/action";
+							"reboot": {
+								"type": type
+							}	
+						},
+						strUrl = "/servers/" + srvId + "/action";
 
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 			// Rebuilding a server from a specific image
 			rebuild: function(srvId, imgId, rtrnVal) {
 				if(srvId != "" && imgId != "") {
 					var jsonObj = {
-						"rebuild": {
-							"imageId": imgId
-						}	
-					};
-
-					var strUrl = "/servers/" + srvId + "/action";
+							"rebuild": {
+								"imageId": imgId
+							}	
+						},
+						strUrl = "/servers/" + srvId + "/action";
 
 					Rest.post(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false)
-				}
 			},
 
 			// Resize action
@@ -181,53 +169,47 @@ Rackspace = {
 				doResize: function(srvId, flavId, rtrnVal) {
 					if(servId != "" && imgId != "") {
 						var jsonObj = {
-							"resize": {
-								"flavorId": flavId
-							}	
-						};
-
-						var strUrl = "/servers/" + srvId + "/action";
+								"resize": {
+									"flavorId": flavId
+								}	
+							},
+							strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				}, 
 
 				// Confirm the resize
 				confirm: function(srvId, rtrnVal) {
 					if(servId != "" && imgId != "") {
 						var jsonObj = {
-							"confirmResize": null	
-						};
-
-						var strUrl = "/servers/" + srvId + "/action";
+								"confirmResize": null	
+							},
+							strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				},
 
 				// Revert the resize
 				revert: function(srvId, bAsync, rtrnVal) {
 					if(servId != "" && imgId != "") {
 						var jsonObj = {
-							"revertResize": null	
-						};
-
-						var strUrl = "/servers/" + srvId + "/action";
+								"revertResize": null	
+							},
+							strUrl = "/servers/" + srvId + "/action";
 
 						Rest.post(jsonObj, strUrl, bAsync, function(data) {
 							rtrnVal(data);
 						});
-					} else {
+					} else 
 						rtrnVal(false);
-					}
 				}
 			}
 		},
@@ -259,9 +241,8 @@ Rackspace = {
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			}
 		},
 
@@ -292,29 +273,26 @@ Rackspace = {
 					Rest.get(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 			// Create an image
 			create: function (srvId, imgName, bAsync, rtrnVal) {
 				if(srvId != "" && imgName != "") {
 					var jsonObj = {
-						"image": {
-							"serverId": srvId,
-							"name": imgName
-						}
-					}
-
-					var strUrl = "/images";
+							"image": {
+								"serverId": srvId,
+								"name": imgName
+							}
+						},
+						strUrl = "/images";
 				
 					Rest.post(jsonObj, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			},
 
 			// Delete a specific image
@@ -325,9 +303,8 @@ Rackspace = {
 					Rest.delete(null, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
-				} else {
+				} else 
 					rtrnVal(false);
-				}
 			}
 		}
 	}

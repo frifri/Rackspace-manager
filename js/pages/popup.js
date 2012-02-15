@@ -2,26 +2,25 @@ $(document).ready(function() {
 	if(localStorage['username'] != null && localStorage['apikey'] != null) {
 
 		// Check if the current token is still valid
-		if(!Rackspace.Auth.isTokenValid()) {
+		if(!Rackspace.Auth.isTokenValid())
 			Rackspace.Auth.getToken();
-		}
 		
 		// Retrieve the server list
 		Rackspace.Servers.getDetailedList(false, function(data) {
-			var servers = data.servers;
-			var arServerList = new Array();
+			var servers = data.servers,
+				arServerList = new Array();
 
 			// For each server
 			$.each(servers, function(key, server) {
-				var srvName = server.name;
-				var srvStatus = server.status;
-
-				var srvPubIp = "";
+				var srvName = server.name,
+					srvStatus = server.status,
+					srvPubIp = "",
+					srvPrvIp = "";
+                                    
 				$.each(server.addresses.public, function(ipKey, pubIp) {
 					srvPubIp = srvPubIp + pubIp + " ";
 				});
 
-				var srvPrvIp = "";
 				$.each(server.addresses.private, function(ipKey, prvIp) {
 					srvPrvIp = srvPrvIp + prvIp + " ";
 				});
@@ -41,7 +40,6 @@ $(document).ready(function() {
 				"sPaginationType": "bootstrap"
 			});
 		});
-	} else {
+	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
-	}
 });

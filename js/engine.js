@@ -60,9 +60,6 @@ Rest = {
             contentType: "application/json",
 			async: bAsync,
 			beforeSend: function(xhr, settings) {
-
-
-
 				if(localStorage['token'] != "")
 					xhr.setRequestHeader('X-Auth-Token', localStorage['token']);
 			},
