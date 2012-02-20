@@ -1,7 +1,8 @@
 $.extend($.fn.dataTableExt.oStdClasses, {
 	"sSortAsc": "header headerSortDown",
 	"sSortDesc": "header headerSortUp",
-	"sSortable": "header"
+	"sSortable": "header",
+	"sWrapper": "dataTables_wrapper form-inline"
 });
 
 $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
