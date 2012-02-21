@@ -44,3 +44,8 @@ table {
 }
 
 /* END DataTable */
+
+.brand img {
+    margin-top: 3px;
+    margin-left: 5px;
+}
