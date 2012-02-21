@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../js/pages/settings.js"></script>
 
   </head>
-  <body style="padding-top:40px; overflow: hidden;">
+  <body style="padding-top:45px; overflow: hidden;">
 
     <!-- Le Message Container -->
     <div id="message_container" class="span5">
@@ -24,7 +24,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">Rackspace</a>
+          <a class="brand">Rackspace</a>
           <ul class="nav">
             <li><a href="popup.html">Home</a></li>
             <li class="active"><a href="#">Settings</a></li>
@@ -33,30 +33,29 @@
       </div>
     </div>
 
-    <div class="span8">
-      <form id="settings_form">
-        <fieldset>
+    <!-- Le creds form -->
+    <form class="form-horizontal" id="settings_form">
+      <fieldset>
 
-          <div class="clearfix">
-            <label for="username">Username</label>
-            <div class="input">
-              <input class="span3" id="username" type="text">
-            </div>
+        <div class="control-group">
+          <label class="control-label" for="username">Username</label>
+          <div class="controls">
+            <input class="input-medium" id="username" type="text">
           </div>
+        </div>
 
-          <div class="clearfix">
-            <label for="apikey">API Key</label>
-            <div class="input">
-              <input class="span3" id="apikey" type="text">
-            </div>
+        <div class="control-group">
+          <label class="control-label" for="apikey">API Key</label>
+          <div class="controls">
+            <input class="input-medium" id="apikey" type="text">
           </div>
+        </div>
 
-          <div class="actions">
-            <a href="#" id="settings_save" class="btn primary">Save</a>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+        <div class="form-actions">
+          <a href="#" id="settings_save" class="btn btn-small btn-primary">Save</a>
+        </div>
+      </fieldset>
+    </form>
   <!-- / Le Content -->
 
   </body>
