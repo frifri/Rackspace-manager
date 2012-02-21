@@ -44,8 +44,3 @@ table {
 }
 
 /* END DataTable */
-
-div#message_container {
-    margin: auto;
-    margin-top: 5px;
-}

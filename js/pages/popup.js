@@ -36,7 +36,7 @@ $(document).ready(function() {
 					{"sTitle": "Public IP(s)"},
 					{"sTitle": "Private IP(s)"}
 				],
-				"sDom": "<'row'<'span4'l><'span5'f>r>t<'row'<'span4'i><'span5'p>>",
+				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
 				"sPaginationType": "bootstrap"
 			});
 		});
