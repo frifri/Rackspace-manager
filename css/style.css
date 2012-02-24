@@ -49,3 +49,10 @@ table {
     margin-top: 3px;
     margin-left: 5px;
 }
+
+.comingsoon {
+    margin: auto;
+    width: 440px;
+    height: 280px;
+    background: url('../img/comingsoon.png') no-repeat;
+}
