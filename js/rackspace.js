@@ -65,12 +65,36 @@ Rackspace = {
 	},
 	
 	Servers: {
+		minSrvList : {},
+	
+		_generateMinList: function(servers) {
+			// For each server
+			$.each(servers, function(key, server) {
+				var srvId = server.id,
+					srvName = server.name,
+					srvStatus = server.status,
+					srvPubIp = "",
+					srvPrvIp = "";
+                                    
+				$.each(server.addresses.public, function(ipKey, pubIp) {
+					srvPubIp = srvPubIp + pubIp + " ";
+				});
+
+				$.each(server.addresses.private, function(ipKey, prvIp) {
+					srvPrvIp = srvPrvIp + prvIp + " ";
+				});
+
+				Rackspace.Servers.minSrvList[key] = [srvId, srvName, srvStatus, srvPubIp, srvPrvIp];
+			});
+		},
+	
 		// Retrieve the server list (simple)
 		getList: function(bAsync, rtrnVal) {
 			var strUrl = "/servers";
 
 			Rest.get(null, strUrl, bAsync, function(data) {
-				rtrnVal(data);
+				Rackspace.Servers._generateMinList(data);
+				rtrnVal();
 			})
 		},
 	
@@ -79,7 +103,8 @@ Rackspace = {
 			var strUrl = "/servers/detail";
 			
 			Rest.get(null, strUrl, bAsync, function(data) {
-				rtrnVal(data);
+				Rackspace.Servers._generateMinList(data);
+				rtrnVal();
 			});
 		},
 

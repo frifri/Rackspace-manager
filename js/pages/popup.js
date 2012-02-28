@@ -6,31 +6,11 @@ $(document).ready(function() {
 			Rackspace.Auth.getToken();
 		
 		// Retrieve the server list
-		Rackspace.Servers.getDetailedList(false, function(data) {
-			var servers = data.servers,
-				arServerList = new Array();
-
-			// For each server
-			$.each(servers, function(key, server) {
-				var srvName = server.name,
-					srvStatus = server.status,
-					srvPubIp = "",
-					srvPrvIp = "";
-                                    
-				$.each(server.addresses.public, function(ipKey, pubIp) {
-					srvPubIp = srvPubIp + pubIp + " ";
-				});
-
-				$.each(server.addresses.private, function(ipKey, prvIp) {
-					srvPrvIp = srvPrvIp + prvIp + " ";
-				});
-
-				arServerList[key] = [srvName, srvStatus, srvPubIp, srvPrvIp];
-			});
-
+		Rackspace.Servers.getDetailedList(false, function() {				
 			$('#srvTable').dataTable({
-				"aaData": arServerList,
+				"aaData": Rackspace.Servers.minSrvList,
 				"aoColumns": [
+					{"sTitle": "ID"},
 					{"sTitle": "Name"},
 					{"sTitle": "Status"},
 					{"sTitle": "Public IP(s)"},
