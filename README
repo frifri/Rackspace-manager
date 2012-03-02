@@ -2,6 +2,11 @@ This Application will allow you to quickly know how your Rackspace Servers are d
 
 In the future, I will Add the ability to add/edit/delete servers, but also flavors, images and maybe more.
 
+v1.2:
+	- Adding the ability to list the images
+	- Fixing a bug that could prevent to scroll up and down
+	- The list (images and server) are now global
+
 v1.1.2:
 	- Updating dataTable to 1.9.0 (now using the minified version)
 	- Now using the minified version of jQuery

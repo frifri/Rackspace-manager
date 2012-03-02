@@ -81,11 +81,11 @@ Rackspace = {
 						srvPrvIp = "";
 	                                    
 					$.each(server.addresses.public, function(ipKey, pubIp) {
-						srvPubIp = srvPubIp + pubIp + " ";
+						srvPubIp = srvPubIp + srvPubIp + pubIp;
 					});
 
 					$.each(server.addresses.private, function(ipKey, prvIp) {
-						srvPrvIp = srvPrvIp + prvIp + " ";
+						srvPrvIp = srvPrvIp + srvPrvIp + prvIp;
 					});
 
 					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp]);
