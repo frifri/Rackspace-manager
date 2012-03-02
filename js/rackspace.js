@@ -65,12 +65,15 @@ Rackspace = {
 	},
 	
 	Servers: {
-		minSrvList : {},
+		minSrvList : [],
 	
 		_generateMinList: function(servers) {
 			// For each server
 			if(servers.servers.length != 0){
-				$.each(servers, function(key, server) {
+				$.each(servers.servers, function(key, server) {
+
+					console.log(server);
+
 					var srvId = server.id,
 						srvName = server.name,
 						srvStatus = server.status,
@@ -85,12 +88,10 @@ Rackspace = {
 						srvPrvIp = srvPrvIp + prvIp + " ";
 					});
 
-					Rackspace.Servers.minSrvList[key] = [srvId, srvName, srvStatus, srvPubIp, srvPrvIp];
+					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp]);
 				});
-			} else {
-				Rackspace.Servers.minSrvList = {};
-				console.log('nop');
-			}
+			} else
+				Rackspace.Servers.minSrvList = [];
 		},
 	
 		// Retrieve the server list (simple)
@@ -277,12 +278,30 @@ Rackspace = {
 		},
 
 		Images: {
+			minImgList : [],
+
+			_generateMinList: function(images) {
+				// For each server
+				if(images.images.length != 0){
+					$.each(images.images, function(key, image) {
+						var imgId = image.id,
+							imgName = image.name,
+							imgCreated = image.created,
+							imgStatus = image.status;
+
+						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgStatus]);
+					});
+				} else 
+					Rackspace.Servers.Images.minImgList = [];
+			},
+
 			// Get the image list (simple)
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = "/images";
 
 				Rest.get(null, strUrl, bAsync, function(data) {
-					rtrnVal(data);
+					Rackspace.Servers.Images._generateMinList(data);
+					rtrnVal();
 				});
 			},
 
@@ -291,7 +310,8 @@ Rackspace = {
 				var strUrl = "/images/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
-					rtrnVal(data);
+					Rackspace.Servers.Images._generateMinList(data);
+					rtrnVal();
 				});
 			},
 

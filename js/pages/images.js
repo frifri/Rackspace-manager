@@ -5,24 +5,21 @@ $(document).ready(function() {
 		if(!Rackspace.Auth.isTokenValid())
 			Rackspace.Auth.getToken();
 		
-		// Retrieve the server list
-		Rackspace.Servers.getDetailedList(false, function() {
-
-			console.log(JSON.stringify(Rackspace.Servers.minSrvList));
-
-			$('#srvTable').dataTable({
-				"aaData": Rackspace.Servers.minSrvList,
+		// Retrieve the images list
+		Rackspace.Servers.Images.getDetailedList(false, function() {
+			$('#imgTable').dataTable({
+				"aaData": Rackspace.Servers.Images.minImgList,
 				"aoColumns": [
 					{"sTitle": "ID"},
 					{"sTitle": "Name"},
-					{"sTitle": "Status"},
-					{"sTitle": "Public IP(s)"},
-					{"sTitle": "Private IP(s)"}
+					{"sTitle": "Creation time"},
+					{"sTitle": "Status"}
 				],
 				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
 				"sPaginationType": "bootstrap"
 			});
 		});
+
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
 });
