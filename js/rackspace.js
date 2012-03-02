@@ -69,23 +69,28 @@ Rackspace = {
 	
 		_generateMinList: function(servers) {
 			// For each server
-			$.each(servers, function(key, server) {
-				var srvId = server.id,
-					srvName = server.name,
-					srvStatus = server.status,
-					srvPubIp = "",
-					srvPrvIp = "";
-                                    
-				$.each(server.addresses.public, function(ipKey, pubIp) {
-					srvPubIp = srvPubIp + pubIp + " ";
-				});
+			if(servers.servers.length != 0){
+				$.each(servers, function(key, server) {
+					var srvId = server.id,
+						srvName = server.name,
+						srvStatus = server.status,
+						srvPubIp = "",
+						srvPrvIp = "";
+	                                    
+					$.each(server.addresses.public, function(ipKey, pubIp) {
+						srvPubIp = srvPubIp + pubIp + " ";
+					});
 
-				$.each(server.addresses.private, function(ipKey, prvIp) {
-					srvPrvIp = srvPrvIp + prvIp + " ";
-				});
+					$.each(server.addresses.private, function(ipKey, prvIp) {
+						srvPrvIp = srvPrvIp + prvIp + " ";
+					});
 
-				Rackspace.Servers.minSrvList[key] = [srvId, srvName, srvStatus, srvPubIp, srvPrvIp];
-			});
+					Rackspace.Servers.minSrvList[key] = [srvId, srvName, srvStatus, srvPubIp, srvPrvIp];
+				});
+			} else {
+				Rackspace.Servers.minSrvList = {};
+				console.log('nop');
+			}
 		},
 	
 		// Retrieve the server list (simple)
