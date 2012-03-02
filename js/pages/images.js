@@ -12,7 +12,8 @@ $(document).ready(function() {
 				"aoColumns": [
 					{"sTitle": "ID"},
 					{"sTitle": "Name"},
-					{"sTitle": "Creation time"},
+					{"sTitle": "Created on"},
+					{"sTitle": "Updated on"},
 					{"sTitle": "Status"}
 				],
 				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",

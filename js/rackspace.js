@@ -287,9 +287,16 @@ Rackspace = {
 						var imgId = image.id,
 							imgName = image.name,
 							imgCreated = image.created,
+							imgUpdated = image.updated,
 							imgStatus = image.status;
 
-						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgStatus]);
+							if(!imgCreated)
+								imgCreated = "N/A";
+
+							if(!imgUpdated)
+								imgUpdated = "N/A";
+
+						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus]);
 					});
 				} else 
 					Rackspace.Servers.Images.minImgList = [];

@@ -7,9 +7,6 @@ $(document).ready(function() {
 		
 		// Retrieve the server list
 		Rackspace.Servers.getDetailedList(false, function() {
-
-			console.log(JSON.stringify(Rackspace.Servers.minSrvList));
-
 			$('#srvTable').dataTable({
 				"aaData": Rackspace.Servers.minSrvList,
 				"aoColumns": [
