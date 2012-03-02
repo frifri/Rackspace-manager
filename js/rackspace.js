@@ -88,7 +88,7 @@ Rackspace = {
 						srvPrvIp = srvPrvIp + srvPrvIp + prvIp;
 					});
 
-					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp]);
+					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
 				});
 			} else
 				Rackspace.Servers.minSrvList = [];
@@ -296,7 +296,7 @@ Rackspace = {
 							if(!imgUpdated)
 								imgUpdated = "N/A";
 
-						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus]);
+						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus, null]);
 					});
 				} else 
 					Rackspace.Servers.Images.minImgList = [];

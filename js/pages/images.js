@@ -14,7 +14,15 @@ $(document).ready(function() {
 					{"sTitle": "Name"},
 					{"sTitle": "Created on"},
 					{"sTitle": "Updated on"},
-					{"sTitle": "Status"}
+					{"sTitle": "Status"},
+					{
+						"sTitle": "Actions",
+						"fnRender": function(o, val) {
+							return "<div class='actionDiv' id='" 
+								+ o.aData[0]
+								+ "'><i class='icon-remove'></i></div>";
+						}
+					}
 				],
 				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
 				"sPaginationType": "bootstrap"
