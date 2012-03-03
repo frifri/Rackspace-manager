@@ -45,6 +45,11 @@ table {
 
 /* END DataTable */
 
+#message_container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .brand img {
     margin-top: 3px;
     margin-left: 5px;
