@@ -2,6 +2,14 @@ This Application will allow you to quickly know how your Rackspace Servers are d
 
 In the future, I will Add the ability to add/edit/delete servers, but also flavors, images and maybe more.
 
+v1.2.1.1:
+	- Fixing the date format for the images
+	- The sorting (desc/asc) iamges are now displayed
+
+v1.2.1:
+	- Preparing the code for the actions on ther servers/Images
+	- Adding the ability to list flavors
+
 v1.2:
 	- Adding the ability to list the images
 	- Fixing a bug that could prevent to scroll up and down

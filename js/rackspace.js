@@ -22,6 +22,18 @@
 
 Rackspace = {
 
+	_parseDate : function(date) {
+		// Parsing the date
+		var splitDateTime = date.split('T'),
+			splitDate = splitDateTime[0].split('-'),
+			year = splitDate[0],
+			month = splitDate[1],
+			day = splitDate[2],
+			hours = splitDateTime[1].substring(0, 5);
+			
+		return month + "/" + day + "/" + year + " - " + hours;
+	},
+
 	Auth: {
 		// Version of the current Rackspace auth API
 		authVersion : "v1.1",
@@ -313,9 +325,13 @@ Rackspace = {
 
 							if(!imgCreated)
 								imgCreated = "N/A";
+							else 
+								imgCreated = Rackspace._parseDate(imgCreated);
 
 							if(!imgUpdated)
 								imgUpdated = "N/A";
+							else 
+								imgUpdated = Rackspace._parseDate(imgUpdated);
 
 						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus]);
 						// Actions...
