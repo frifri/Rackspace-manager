@@ -260,8 +260,6 @@ Rackspace = {
 							flvDisk = flavor.disk;
 
 						Rackspace.Servers.Flavors.minFlvList.push([flvId, flvName, flvRam, flvDisk]);
-						// Actions...
-						//Rackspace.Servers.Flavors.minFlvList.push([flvId, flvName, flvRam, flvDisk, null]);
 					});
 				} else 
 					Rackspace.Servers.Flavors.minFlvList = [];
