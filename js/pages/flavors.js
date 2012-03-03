@@ -6,23 +6,14 @@ $(document).ready(function() {
 			Rackspace.Auth.getToken();
 		
 		// Retrieve the images list
-		Rackspace.Servers.Images.getDetailedList(false, function() {
-			$('#imgTable').dataTable({
-				"aaData": Rackspace.Servers.Images.minImgList,
+		Rackspace.Servers.Flavors.getDetailedList(false, function() {
+			$('#flvTable').dataTable({
+				"aaData": Rackspace.Servers.Flavors.minFlvList,
 				"aoColumns": [
 					{"sTitle": "ID"},
 					{"sTitle": "Name"},
-					{"sTitle": "Created on"},
-					{"sTitle": "Updated on"},
-					{"sTitle": "Status"}
-					/*{
-						"sTitle": "Actions",
-						"fnRender": function(o, val) {
-							return "<div class='actionDiv' id='" 
-								+ o.aData[0]
-								+ "'><i class='icon-remove'></i></div>";
-						}
-					}*/
+					{"sTitle": "Ram"},
+					{"sTitle": "Disk space"}
 				],
 				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
 				"sPaginationType": "bootstrap"

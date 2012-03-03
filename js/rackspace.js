@@ -89,6 +89,8 @@ Rackspace = {
 					});
 
 					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
+					// Actions...
+					//Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
 				});
 			} else
 				Rackspace.Servers.minSrvList = [];
@@ -246,12 +248,32 @@ Rackspace = {
 		},
 
 		Flavors: {
+			minFlvList : [],
+
+			_generateMinList: function(flavors) {
+				// For each server
+				if(flavors.flavors.length != 0){
+					$.each(flavors.flavors, function(key, flavor) {
+						var flvId = flavor.id,
+							flvName = flavor.name,
+							flvRam = flavor.ram,
+							flvDisk = flavor.disk;
+
+						Rackspace.Servers.Flavors.minFlvList.push([flvId, flvName, flvRam, flvDisk]);
+						// Actions...
+						//Rackspace.Servers.Flavors.minFlvList.push([flvId, flvName, flvRam, flvDisk, null]);
+					});
+				} else 
+					Rackspace.Servers.Flavors.minFlvList = [];
+			},
+
 			// Get the flavor list (simple)
 			getList: function(bAsync, rtrnVal) {
 				var strUrl = "/flavors";
 
 				Rest.get(null, strUrl, bAsync, function(data) {
-					rtrnVal(data);
+					Rackspace.Servers.Flavors._generateMinList(data);
+					rtrnVal();
 				});
 			},
 
@@ -260,7 +282,8 @@ Rackspace = {
 				var strUrl = "/flavors/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
-					rtrnVal(data);
+					Rackspace.Servers.Flavors._generateMinList(data);
+					rtrnVal();
 				});
 			},
 
@@ -296,7 +319,9 @@ Rackspace = {
 							if(!imgUpdated)
 								imgUpdated = "N/A";
 
-						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus, null]);
+						Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus]);
+						// Actions...
+						//Rackspace.Servers.Images.minImgList.push([imgId, imgName, imgCreated, imgUpdated, imgStatus, null]);
 					});
 				} else 
 					Rackspace.Servers.Images.minImgList = [];
@@ -354,7 +379,7 @@ Rackspace = {
 
 			// Delete a specific image
 			deleteImage: function(imgId, bAsync, rtrnVal) {
-				if(imgId != "") {
+				if(imgId) {
 					var strUrl = "/images/" + imgId;
 					
 					Rest.delete(null, strUrl, bAsync, function(data) {
