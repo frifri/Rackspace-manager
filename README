@@ -1,6 +1,17 @@
-This Application will allow you to quickly know how your Rackspace Servers are doing (among some other informations).
+This Application will allow you to quickly know how your Rackspace Servers are doing (among some other informations)
+But also (soft-)reboot them.
 
-In the future, I will Add the ability to add/edit/delete servers, but also flavors, images and maybe more.
+In the future, I will Add the ability to 
+	- add/edit/delete servers, but also flavors, images and maybe more.
+	- rebuild/resize your servers
+	- Update servers names and Administrative password
+	
+------------------------------------------------------------------------------------
+
+v1.3:
+	- You can now reboot (soft) a server
+	- Adding the tooltips
+	- Fixing some issues in the js lib
 
 v1.2.1.1:
 	- Fixing the date format for the images
