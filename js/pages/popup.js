@@ -14,20 +14,22 @@ $(document).ready(function() {
 					{"sTitle": "Name"},
 					{"sTitle": "Status"},
 					{"sTitle": "Public IP(s)"},
-					{"sTitle": "Private IP(s)"}
-					/*{
+					{"sTitle": "Private IP(s)"},
+					{
 						"sTitle": "Actions",
 						"fnRender": function(o, val) {
 							return "<div class='actionDiv' id='" 
 								+ o.aData[0]
-								+ "'><i class='icon-pencil'></i> <i class='icon-remove'></i></div>";
+								+ "'><i id='srv_actions' class='icon-refresh' rel='tooltip' title='Soft reboot'></i>";
 						}
-					}*/
+					}
 				],
 				"sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
 				"sPaginationType": "bootstrap"
 			});
 		});
+		
+		$('i#srv_actions.icon-refresh').tooltip();
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
 });
