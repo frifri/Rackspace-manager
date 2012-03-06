@@ -15,5 +15,22 @@ Utils = {
 			.removeClass(target.attr('class'))
 			.addClass('span5')
 			.html("");
+	},
+	
+	refreshTable: function(type){
+		if(type == "server"){
+			Rackspace.Servers.getDetailedList(true, function() {
+				var oTable = $('#srvTable').dataTable();
+				oTable.fnClearTable();
+				oTable.fnAddData(Rackspace.Servers.minSrvList);
+				$('i#srv_actions.icon-refresh').tooltip();
+			});
+		} else if(type == "image") {
+			Rackspace.Servers.Images.getDetailedList(true, function() {
+				var oTable = $('#imgTable').dataTable();
+				oTable.fnClearTable();
+				oTable.fnAddData(Rackspace.Servers.minImgList);
+			});
+		}
 	}
 }

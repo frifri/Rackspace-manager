@@ -29,12 +29,12 @@ $(document).ready(function() {
 			});
 		});
 		
-		var rebootIcon = $('i#srv_actions.icon-refresh');
-		rebootIcon.tooltip();
-		rebootIcon.on('click', function() {
+		$('i#srv_actions.icon-refresh').tooltip();
+		$(document).on('click', 'i#srv_actions.icon-refresh', function() {
 			var srvId = $(this).parent().attr('id');
 			Rackspace.Servers.Action.reboot('SOFT', srvId, function(data) {
-				console.log(data);
+				//console.log(data);
+				Utils.refreshTable("server");
 			});
 		});
 	} else

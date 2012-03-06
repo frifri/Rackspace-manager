@@ -68,7 +68,13 @@ Rest = {
 				rtrnVal(data);
 			},
             error: function(jqXHR, status, errorThrown) {
-            	rtrnVal(jqXHR);
+			var errorObj = {
+				"reqError": {
+					"nb": jqXHR.status,
+					"text": jqXHR.statusText
+				}
+			};
+            	rtrnVal(errorObj);
             }
         });
 	}
