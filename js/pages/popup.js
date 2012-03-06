@@ -29,7 +29,14 @@ $(document).ready(function() {
 			});
 		});
 		
-		$('i#srv_actions.icon-refresh').tooltip();
+		var rebootIcon = $('i#srv_actions.icon-refresh');
+		rebootIcon.tooltip();
+		rebootIcon.on('click', function() {
+			var srvId = $(this).parent().attr('id');
+			Rackspace.Servers.Action.reboot('SOFT', srvId, function(data) {
+				console.log(data);
+			});
+		});
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
 });

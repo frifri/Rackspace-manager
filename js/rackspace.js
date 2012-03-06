@@ -83,9 +83,6 @@ Rackspace = {
 			// For each server
 			if(servers.servers.length != 0){
 				$.each(servers.servers, function(key, server) {
-
-					console.log(server);
-
 					var srvId = server.id,
 						srvName = server.name,
 						srvStatus = server.status,
@@ -100,9 +97,9 @@ Rackspace = {
 						srvPrvIp = srvPrvIp + srvPrvIp + prvIp;
 					});
 
-					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
+					//Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp]);
 					// Actions...
-					//Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
+					Rackspace.Servers.minSrvList.push([srvId, srvName, srvStatus, srvPubIp, srvPrvIp, null]);
 				});
 			} else
 				Rackspace.Servers.minSrvList = [];
@@ -123,6 +120,54 @@ Rackspace = {
 			var strUrl = "/servers/detail";
 			
 			Rest.get(null, strUrl, bAsync, function(data) {
+			
+				// var obj = {
+					// "servers" : [
+						// {
+							// "id" : 1234,
+							// "name" : "sample-server",
+							// "imageId" : 1,
+							// "flavorId" : 1,
+							// "hostId" : "e4d909c290d0fb1ca068ffaddf22cbd0",
+							// "status" : "BUILD",
+							// "progress" : 60,
+							// "addresses" : {
+								// "public" : [
+									// "67.23.10.132",
+									// "67.23.10.131"
+								// ],
+								// "private" : [
+									// "10.176.42.16"
+								// ]
+							// },
+							// "metadata" : {
+								// "Server Label" : "Web Head 1",
+								// "Image Version" : "2.1"
+							// }
+						// },
+						// {
+							// "id" : 5678,
+							// "name" : "sample-server2",
+							// "imageId" : 1,
+							// "flavorId" : 1,
+							// "hostId" : "9e107d9d372bb6826bd81d3542a419d6",
+							// "status" : "ACTIVE",
+							// "addresses" : {
+								// "public" : [
+									// "67.23.10.133"
+								// ],
+								// "private" : [
+									// "10.176.42.17"
+								// ] 
+							// },
+							// "metadata" : {
+								// "Server Label" : "DB 1"
+							// }
+						// }
+					// ] 
+				// }
+			
+				// Rackspace.Servers._generateMinList(obj);
 				Rackspace.Servers._generateMinList(data);
 				rtrnVal();
 			});
@@ -175,7 +220,7 @@ Rackspace = {
 			// Reboot a server
 			// HARD or SOFT reboot
 			reboot: function(type, srvId, rtrnVal) {
-				if(type == "HARD"  || type = "SOFT") {
+				if(type == "HARD"  || type == "SOFT") {
 					var jsonObj = {
 							"reboot": {
 								"type": type
@@ -183,7 +228,7 @@ Rackspace = {
 						},
 						strUrl = "/servers/" + srvId + "/action";
 
-					Rest.post(null, strUrl, bAsync, function(data) {
+					Rest.post(jsonObj, strUrl, true, function(data) {
 						rtrnVal(data);
 					});
 				} else 
@@ -200,7 +245,7 @@ Rackspace = {
 						},
 						strUrl = "/servers/" + srvId + "/action";
 
-					Rest.post(null, strUrl, bAsync, function(data) {
+					Rest.post(jsonObj, strUrl, bAsync, function(data) {
 						rtrnVal(data);
 					});
 				} else 
