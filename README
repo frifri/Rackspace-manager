@@ -8,6 +8,9 @@ In the future, I will Add the ability to
 	
 ------------------------------------------------------------------------------------
 
+v1.3.0.2:
+	- The IPs will now display correctly.
+
 v1.3:
 	- You can now reboot (soft) a server
 	- Adding the tooltips
