@@ -42,10 +42,35 @@ $(document).ready(function() {
 			});
 		});
 
+		// Rebuild events
+		// ---------------------
 		$(document).on('click', 'i#srv_actions.icon-repeat', function() {
-			$('div#myPopup').css('display', 'block');
-			Popup.Pop.srvRebuild();
+			if(Popup.isHidden()) {
+				$('#popContent').attr('srvId', $(this).parent().attr('id'));
+				Popup.Pop.srvRebuild();
+			}
+			else
+				Popup.hide();
 		});
+
+		$(document).on('click', 'div#myPopup #popContent a#rebuild-cancel', function() {
+			Popup.hide();
+		});
+
+		$(document).on('click', 'div#myPopup a.close', function() {
+			Popup.hide();
+		});
+
+		$(document).on('click', 'div#myPopup #popContent a#rebuild-save', function() {
+			var srvId = $('#popContent').attr('srvId'),
+				imgId = $('#popContent select#image').val();
+
+			Rackspace.Servers.Action.rebuild(srvId, imgId, function(data) {
+				console.log(data);
+			});
+		});
+		// ---------------------
+
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");
 });

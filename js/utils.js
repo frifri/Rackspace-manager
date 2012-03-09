@@ -39,8 +39,6 @@ Utils = {
 
 	Selects: {
 		images : function() {
-			console.log(localStorage['minImgList']);
-
 			var imgSelect = "<div class='control-group'>"
 			+ "<label class='control-label' for='image'>Image</label>"
 			+ "<div class='controls'>"

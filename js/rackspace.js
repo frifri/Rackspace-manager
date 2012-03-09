@@ -339,9 +339,6 @@ Rackspace = {
 				var strUrl = "/flavors/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
-
-					console.log(data);
-
 					Rackspace.Servers.Flavors.minFlvList = [];
 					Rackspace.Servers.Flavors._generateMinList(data);
 					rtrnVal();
