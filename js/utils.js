@@ -35,5 +35,24 @@ Utils = {
 				oTable.fnAddData(Rackspace.Servers.minImgList);
 			});
 		}
+	},
+
+	Selects: {
+		images : function() {
+			var imgSelect = "<div class='control-group'>"
+			+ "<label class='control-label' for='image'>Image</label>"
+			+ "<div class='controls'>"
+			+ "<select id='image'>";
+
+			$.each(Rackspace.Servers.Images.minImgList, function(key, item) {
+				imgSelect = imgSelect
+				+ "<option value='" + item[0] + "' >" + item[1] + "</option>";
+			});
+
+			imgSelect = imgSelect
+			+ "</select>"
+			+ "</div>"
+			+ "</div>";
+		}
 	}
 }
