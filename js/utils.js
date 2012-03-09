@@ -22,7 +22,7 @@ Utils = {
 			Rackspace.Servers.getDetailedList(true, function() {
 				var oTable = $('#srvTable').dataTable();
 				oTable.fnClearTable();
-				oTable.fnAddData(Rackspace.Servers.minSrvList);
+				oTable.fnAddData(localStorage['minSrvList']);
 
 				// Refreshing tooltips
 				$('i#srv_actions.icon-refresh').tooltip();
@@ -32,17 +32,20 @@ Utils = {
 			Rackspace.Servers.Images.getDetailedList(true, function() {
 				var oTable = $('#imgTable').dataTable();
 				oTable.fnClearTable();
-				oTable.fnAddData(Rackspace.Servers.minImgList);
+				oTable.fnAddData(localStorage['minImgList']);
 			});
 		}
 	},
 
 	Selects: {
 		images : function() {
+			console.log(localStorage['minImgList']);
+
 			var imgSelect = "<div class='control-group'>"
 			+ "<label class='control-label' for='image'>Image</label>"
 			+ "<div class='controls'>"
-			+ "<select id='image'>";
+			+ "<select id='image'>"
+			+ "<option value='0'> ---------------- </option>"
 
 			$.each(Rackspace.Servers.Images.minImgList, function(key, item) {
 				imgSelect = imgSelect
@@ -53,6 +56,8 @@ Utils = {
 			+ "</select>"
 			+ "</div>"
 			+ "</div>";
+
+			return imgSelect;
 		}
 	}
 }

@@ -2,6 +2,20 @@ $(document).ready(function() {
 	$(document).on("click", '#message_container a.close', function() {
 		Utils.removeMessage();
 	});
+
+	// Initialisations
+
+	Rackspace.Servers.getDetailedList(false, function() {
+		console.log("DEBUG: server list loaded");
+	});
+	Rackspace.Servers.Flavors.getDetailedList(false, function() {
+		console.log("DEBUG: flavor list loaded");
+	});
+	Rackspace.Servers.Images.getDetailedList(false, function() {
+		console.log("DEBUG: image list loaded");
+	});
+
+
 	/*$(document).on("click", 'div.actionDiv i.icon-remove', function() {
 		var itemId = $(this).parent().attr('id');
 

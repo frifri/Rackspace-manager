@@ -44,6 +44,7 @@ $(document).ready(function() {
 
 		$(document).on('click', 'i#srv_actions.icon-repeat', function() {
 			$('div#myPopup').css('display', 'block');
+			Popup.Pop.srvRebuild();
 		});
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");

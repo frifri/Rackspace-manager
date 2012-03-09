@@ -164,9 +164,9 @@ Rackspace = {
 				            "metadata" : {
 				                "Server Label" : "DB 1"
 				            }
-				        }
+				        },
 				    ] 
-				}
+				};
 
 				Rackspace.Servers.minSrvList = []; 
 				Rackspace.Servers._generateMinList(obj);
@@ -339,6 +339,9 @@ Rackspace = {
 				var strUrl = "/flavors/detail";
 				
 				Rest.get(null, strUrl, bAsync, function(data) {
+
+					console.log(data);
+
 					Rackspace.Servers.Flavors.minFlvList = [];
 					Rackspace.Servers.Flavors._generateMinList(data);
 					rtrnVal();
