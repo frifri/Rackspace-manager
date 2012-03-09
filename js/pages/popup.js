@@ -20,7 +20,8 @@ $(document).ready(function() {
 						"fnRender": function(o, val) {
 							return "<div class='actionDiv' id='" 
 								+ o.aData[0]
-								+ "'><i id='srv_actions' class='icon-refresh' rel='tooltip' title='Soft reboot'></i>";
+								+ "'><i id='srv_actions' class='icon-refresh' rel='tooltip' title='Soft reboot'></i>"
+								+ " <i id='srv_actions' class='icon-repeat' rel='tooltip' title='Rebuild'></i>";
 						}
 					}
 				],
@@ -29,13 +30,20 @@ $(document).ready(function() {
 			});
 		});
 		
+		// Tooltips
 		$('i#srv_actions.icon-refresh').tooltip();
+		$('i#srv_actions.icon-repeat').tooltip();
+
 		$(document).on('click', 'i#srv_actions.icon-refresh', function() {
 			var srvId = $(this).parent().attr('id');
 			Rackspace.Servers.Action.reboot('SOFT', srvId, function(data) {
 				//console.log(data);
 				Utils.refreshTable("server");
 			});
+		});
+
+		$(document).on('click', 'i#srv_actions.icon-repeat', function() {
+			$('div#myPopup').css('display', 'block');
 		});
 	} else
 		Utils.writeMessage("You will have to enter a username and an API key in order to use this extension.", "warning");

@@ -69,3 +69,10 @@ table {
 .actionDiv i {
     cursor: pointer;
 }
+
+div#myPopup {
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 20%;
+    display: none;
+}

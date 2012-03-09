@@ -23,7 +23,10 @@ Utils = {
 				var oTable = $('#srvTable').dataTable();
 				oTable.fnClearTable();
 				oTable.fnAddData(Rackspace.Servers.minSrvList);
+
+				// Refreshing tooltips
 				$('i#srv_actions.icon-refresh').tooltip();
+				$('i#srv_actions.icon-repeat').tooltip();
 			});
 		} else if(type == "image") {
 			Rackspace.Servers.Images.getDetailedList(true, function() {
