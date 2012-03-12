@@ -312,8 +312,6 @@ Rackspace = {
 			minFlvList : [],
 
 			_generateMinList: function(flavors) {
-				console.log(flavors);
-			
 				// For each server
 				if(flavors.flavors.length != 0){
 					$.each(flavors.flavors, function(key, flavor) {

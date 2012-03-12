@@ -62,18 +62,19 @@ Rest = {
 			beforeSend: function(xhr, settings) {
 				if(localStorage['token'] != "")
 					xhr.setRequestHeader('X-Auth-Token', localStorage['token']);
+					xhr.setRequestHeader('Cache-Control', 'no-cache');
 			},
             data: strData,
-			success: function(data) {
+			success: function(data, textStatus, jqXHR) {
 				rtrnVal(data);
 			},
-            error: function(jqXHR, status, errorThrown) {
-			var errorObj = {
-				"reqError": {
-					"nb": jqXHR.status,
-					"text": jqXHR.statusText
-				}
-			};
+            error: function(jqXHR, textStatus, errorThrown) {
+				var errorObj = {
+					"reqError": {
+						"nb": jqXHR.status,
+						"text": jqXHR.statusText
+					}
+				};
             	rtrnVal(errorObj);
             }
         });
