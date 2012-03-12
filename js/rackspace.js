@@ -65,13 +65,16 @@ Rackspace = {
 
 		// return true if the token is still valid
 		isTokenValid: function() {
-			var d = new Date
-				curDate = d.getTime(),
-				ttl = localStorage['ttl'] - curDate;
+			if(localStorage['token']) {
+				var d = new Date
+					curDate = d.getTime(),
+					ttl = localStorage['ttl'] - curDate;
 
-			if(ttl > 0)
-				return true;
-			else
+				if(ttl > 0)
+					return true;
+				else
+					return false;
+			} else 
 				return false;
 		}
 	},
@@ -309,6 +312,8 @@ Rackspace = {
 			minFlvList : [],
 
 			_generateMinList: function(flavors) {
+				console.log(flavors);
+			
 				// For each server
 				if(flavors.flavors.length != 0){
 					$.each(flavors.flavors, function(key, flavor) {

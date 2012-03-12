@@ -4,16 +4,23 @@ $(document).ready(function() {
 	});
 
 	// Initialisations
-
-	Rackspace.Servers.getDetailedList(false, function() {
-		console.log("DEBUG: server list loaded");
-	});
-	Rackspace.Servers.Flavors.getDetailedList(false, function() {
-		console.log("DEBUG: flavor list loaded");
-	});
-	Rackspace.Servers.Images.getDetailedList(false, function() {
-		console.log("DEBUG: image list loaded");
-	});
+	if(localStorage['username'] != null && localStorage['apikey'] != null) {
+	
+		// Check if the current token is still valid
+		if(!Rackspace.Auth.isTokenValid())
+			Rackspace.Auth.getToken();
+	
+		Rackspace.Servers.getDetailedList(false, function() {
+			console.log("DEBUG: server list loaded");
+		});
+		Rackspace.Servers.Flavors.getDetailedList(false, function() {
+			console.log("DEBUG: flavor list loaded");
+		});
+		Rackspace.Servers.Images.getDetailedList(false, function() {
+			console.log("DEBUG: image list loaded");
+		});
+	
+	}
 
 
 	/*$(document).on("click", 'div.actionDiv i.icon-remove', function() {
