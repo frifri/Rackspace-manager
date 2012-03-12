@@ -65,7 +65,7 @@ Rest = {
 					xhr.setRequestHeader('Cache-Control', 'no-cache');
 			},
             data: strData,
-			success: function(data, textStatus, jqXHR) {
+			success: function(data) {
 				rtrnVal(data);
 			},
             error: function(jqXHR, textStatus, errorThrown) {
