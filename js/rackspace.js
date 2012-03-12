@@ -399,7 +399,7 @@ Rackspace = {
 				var strUrl = "/images";
 
 				Rest.get(null, strUrl, bAsync, function(data) {
-					ackspace.Servers.Images.minImgList = [];
+					Rackspace.Servers.Images.minImgList = [];
 					Rackspace.Servers.Images._generateMinList(data);
 					rtrnVal();
 				});
